@@ -10,6 +10,11 @@ def updateone(obj,table_basse, con,id):
     sec = executeStatement(seq,table_basse,2,con,id)
     return sec
 
+def updateSql(sql,values, con):
+    cursor = con.cursor()
+    cursor.execute(sql, values)
+    con.commit()
+
 def deletedone(table_basse, con,id):
     sec = executeStatement('',table_basse,3,con,id)
     return sec
