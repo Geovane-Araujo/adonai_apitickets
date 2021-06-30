@@ -15,12 +15,21 @@ def deletedone(table_basse, con,id):
     return sec
 
 def getAll(sql,con):
-    obj = ''
     cursor = con.cursor()
     cursor.execute(sql)
-    print(cursor.columns)
-    return ''
+    columns = cursor.column_names
+    result = cursor.fetchall()
+    allobject = []
+    obj = dict((col, "") for col in columns)
 
+    for rs in result:
+        i = 0
+        ob = dict(obj)
+        for col in columns:
+            ob[col] = rs[i]
+            i += 1
+        allobject.append(ob)
+    return allobject
 
 def executeStatement(obj,table_basse, tp,con, id):
     sql = ''
