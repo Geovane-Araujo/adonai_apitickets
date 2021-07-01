@@ -28,16 +28,31 @@ def explorerdynamic(obj, db):
 
     try:
         cursor = con.cursor()
-        cursor.execute(f"select query from dynamic where route = '{route}'")
+        cursor.execute(f"select query,tablebase from dynamic where route = '{route}'")
         rs = cursor.fetchone()
         sql = rs[0]
+        tablebase = rs[1]
         cursor.close()
 
         try:
             sql = sql + ' ' + filters + ' ' + order
             result = methods.getAll(sql, con1)
+
+            sql = "SELECT COUNT(id) as count from " + tablebase + " " + filters
+            cursor = con1.cursor()
+            cursor.execute(sql)
+            rs = cursor.fetchone()
+            totalRecords = rs[0]
             con1.close()
             con.close()
+
+            result = {
+                "ret": "success",
+                "motivo": "OK",
+                "totalRecords": totalRecords,
+                "obj": result
+            }
+
         except mysql.connector.Error as er:
             result = {
                 "ret": "unsuccess",
