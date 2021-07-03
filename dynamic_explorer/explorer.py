@@ -9,7 +9,7 @@ from pain_crud import methods
 
 explorerdyn = Blueprint('explorerdyn',__name__, template_folder='dynamic_explorer')
 
-@explorerdyn.route('/v1/explorer',methods=['GET'])
+@explorerdyn.route('/api/v1/explorer',methods=['POST'])
 def dynamicExplorer():
     obj = request.get_json()
     token = request.headers.get('Authorization')
