@@ -2,8 +2,14 @@ import string
 import random
 import base64
 
-def encode():
-    token = ""
-    for x in range(1):
-        token = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(20))
+def encode(id, login):
+    token = str(id) + '&' + login
+    encodeByte = base64.b64encode(token.encode("utf-8"))
+    token = str(encodeByte, "utf-8")
     return token
+
+def decode(token):
+    code = base64.b64decode(token)
+    codea = code.split("&")
+    id = codea[0]
+    return id

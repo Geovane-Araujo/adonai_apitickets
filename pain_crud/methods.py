@@ -40,17 +40,19 @@ def getOne(sql,con):
     cursor = con.cursor()
     cursor.execute(sql)
     columns = cursor.column_names
-    result = cursor.fetchall()
+    result = cursor.fetchone()
     allobject = []
     obj = dict((col, "") for col in columns)
 
 
     ob = dict(obj)
     i = 0
-    for col in columns:
-        ob[col] = result[i]
-        i += 1
-
+    if(result != None):
+        for col in columns:
+            ob[col] = result[i]
+            i += 1
+    else:
+        ob = None
     return ob
 
 def executeStatement(obj,table_basse, tp,con, id):
