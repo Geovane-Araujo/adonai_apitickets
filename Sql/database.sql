@@ -5,8 +5,13 @@ create table if not exists pessoa(
 	id int AUTO_INCREMENT,
 	nome varchar(100),
 	foto LONGTEXT,
+    cnpjcpf varchar(14),
+    rgie varchar(15),
 	constraint id_pessoa primary key (id)
 );
+
+alter table pessoa add cnpjcpf varchar(14);
+alter table pessoa add rgie varchar(15);
 
 create table if not exists pessoa_usuario(
 
@@ -15,6 +20,9 @@ create table if not exists pessoa_usuario(
 	senha varchar(40),
 	idpessoa int
 );
+
+insert into pessoa(id,nome) values(-10,'Administrador');
+insert into pessoa_usuario values(0,'admin','1234',-10);
 
 create table if not exists atendimento_status(
 
@@ -50,6 +58,15 @@ create table if not exists pessoa_clientes(
 	fantasia varchar(70)
 );
 
+create table if not exists pessoa_empresa(
+
+	id int AUTO_INCREMENT primary key,
+	idpessoa int,
+	fantasia varchar(70)
+);
+
+insert into pessoa(id, nome,cnpjcpf) values(0,'Empresa Padrão','00000000000000');
+insert into pessoa_empresa(idpessoa,fantasia) values(0,'Empresa Padrão');
 
 create table if not exists pessoa_endereco(
 
@@ -85,6 +102,7 @@ alter table atendimentos add constraint fk_atendimentos_atendimento_status forei
 alter table atendimento_anexos add constraint fk_atendimento_anexos_atendimento foreign key (idatendimento) references atendimentos(id);
 alter table atendimento_anexos add constraint fk_atendimento_anexos_pessoa_usuario foreign key (idusuario) references pessoa(id);
 alter table pessoa_clientes add constraint fk_pessoa_clientes_pessoa foreign key (idpessoa) references pessoa(id);
+alter table pessoa_empresa add constraint fk_pessoa_empresa_pessoa foreign key (idpessoa) references pessoa(id);
 alter table pessoa_endereco add constraint fk_pessoa_endereco_pessoa foreign key (idpessoa) references pessoa(id);
 alter table pessoa_endereco add constraint fk_pessoa_endereco_cidades foreign key (idcidade) references cidades(id);
 alter table cidades add constraint fk_cidades_estados foreign key (idestado) references estados(id);
