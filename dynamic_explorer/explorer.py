@@ -17,6 +17,15 @@ def dynamicExplorer():
     resutl = explorerdynamic(obj,db)
     return json.dumps(resutl)
 
+@explorerdyn.route('/api/v1/explorerdeleted',methods=['DELETE'])
+def dynamicDeletedExplorer():
+    token = request.headers.get('Authorization')
+    id = request.args.get("id")
+    campo = request.args.get("campo")
+    db = "adonais1_tickets_0"
+    resutl = deletedynamic(id,campo,db)
+    return json.dumps(resutl)
+
 
 def explorerdynamic(obj, db):
     con = connection.new_connection("adonais1_tickets_0")
@@ -58,6 +67,27 @@ def explorerdynamic(obj, db):
                 "ret": "unsuccess",
                 "motivo": er.msg
             }
+    except mysql.connector.Error as er:
+        result = {
+            "ret": "unsuccess",
+            "motivo": er.msg
+        }
+
+    return result
+
+
+def deletedynamic(id, campo, db):
+    con = connection.new_connection(db)
+    try:
+
+        cursor = con.cursor()
+        cursor.execute(f"DELETE FROM {campo} where id = {id}")
+        cursor.close()
+
+        result = {
+            "ret": "success",
+            "motivo": "OK",
+        }
     except mysql.connector.Error as er:
         result = {
             "ret": "unsuccess",

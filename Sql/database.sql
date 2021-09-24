@@ -42,6 +42,7 @@ create table if not exists atendimento_anexos(
 	id int AUTO_INCREMENT primary key,
 	idatendimento int,
 	datainclusao timestamp,
+    descricao varchar(70),
 	idusuario int
 );
 
@@ -74,7 +75,7 @@ create table if not exists pessoa_endereco(
 create table if not exists cidades(
 
 	id int AUTO_INCREMENT primary key,
-	nome varcahr(160),
+	nome varchar(160),
 	idestado int
 );
 
@@ -110,4 +111,8 @@ alter table cidades add constraint fk_cidades_estados foreign key (idestado) ref
 insert into pessoa(id,nome) values(-10,'Administrador');
 insert into pessoa_usuario values(0,'admin','1234',-10);
 insert into pessoa(id, nome,cnpjcpf) values(0,'Empresa Padrão','00000000000000');
-insert into pessoa_empresa(idpessoa,fantasia) values(0,'Empresa Padrão');
+insert into pessoa_empresa(idpessoa,fantasia) values(1,'Empresa Padrão');
+
+
+CREATE USER 'adonais1_admin'@'localhost' IDENTIFIED BY 'Adonai1816';
+GRANT ALL PRIVILEGES ON * . * TO 'adonais1_admin'@'localhost';

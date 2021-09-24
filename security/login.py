@@ -17,8 +17,8 @@ def login():
 
 
 def validalogin(obj):
-    cnpj = obj.get('cnpj')
-    login = obj.get('login')
+    cnpj = obj.get('doc')
+    login = obj.get('nome')
     senha = obj.get('senha')
 
     con = connection.new_connection("adonais1_tickets_0")
@@ -32,6 +32,8 @@ def validalogin(obj):
         return ret
     else:
         con.close()
+        if(idbanco['id'] == 1):
+            idbanco['id'] = 0
         con = connection.new_connection("adonais1_tickets_"+ str(idbanco['id']))
         try:
             login = methods.getOne(

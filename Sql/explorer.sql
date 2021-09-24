@@ -1,3 +1,4 @@
+--menu cliente
 insert into dynamic(route, query,tablebase) values('mnu_cliente','select pessoa.id,
 	   pessoa.nome,
        pessoa_endereco.endereco,
@@ -11,3 +12,10 @@ from pessoa_clientes
     inner join cidades on pessoa_endereco.idcidade = cidades.id
     inner join estados on cidades.idestado = estados.id
 ','pessoa_clientes')
+--expl cidade
+
+insert into dynamic(route, query,tablebase) values('expl_cidades','select cidades.id, cidades.nome , uf
+from cidades
+	inner join estados on idestado = estados.id
+','cidades')
+
