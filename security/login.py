@@ -1,10 +1,9 @@
 import json
-
 import mysql.connector
 from flask import Blueprint, request
 from functions import security
 
-from pain_crud import methods
+from PyAtom import methods
 from connections import connection
 
 loginres = Blueprint('loginres',__name__, template_folder='security')

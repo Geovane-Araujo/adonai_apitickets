@@ -1,5 +1,3 @@
-
-
 def insertone(obj,table_basse, con):
     seq = vars(obj)
     sec = executeStatement(seq,table_basse,1,con,0)

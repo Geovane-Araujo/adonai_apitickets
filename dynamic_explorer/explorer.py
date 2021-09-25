@@ -4,7 +4,7 @@ import mysql.connector
 from flask import Blueprint, request
 
 from connections import connection
-from pain_crud import methods
+from PyAtom import methods
 
 
 explorerdyn = Blueprint('explorerdyn',__name__, template_folder='dynamic_explorer')
