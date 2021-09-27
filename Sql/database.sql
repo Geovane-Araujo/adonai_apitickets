@@ -89,21 +89,21 @@ create table if not exists pessoa_email(
     tipo int
 );
 
-alter table pessoa_telefone add constraint fk_pessoa_telefone foreign key (idpessoa) references pessoa(id);
-alter table pessoa_email add constraint fk_pessoa_email foreign key (idpessoa) references pessoa(id);
-
 create table if not exists cidades(
 
-	id int AUTO_INCREMENT primary key,
-	nome varchar(160),
-	idestado int
+    id int AUTO_INCREMENT primary key,
+    idestado int,
+    ibge int,
+    nome varchar(70)
 );
 
 create table if not exists estados(
 
-	id int AUTO_INCREMENT primary key,
-	nome varchar(50),
-	uf varchar(2)
+    id int AUTO_INCREMENT primary key,
+    nome varchar(50),
+    codigouf int UNIQUE,
+    uf char(2),
+    regiao int
 );
 
 create table dynamic(
@@ -125,7 +125,9 @@ alter table pessoa_clientes add constraint fk_pessoa_clientes_pessoa foreign key
 alter table pessoa_empresa add constraint fk_pessoa_empresa_pessoa foreign key (idpessoa) references pessoa(id);
 alter table pessoa_endereco add constraint fk_pessoa_endereco_pessoa foreign key (idpessoa) references pessoa(id);
 alter table pessoa_endereco add constraint fk_pessoa_endereco_cidades foreign key (idcidade) references cidades(id);
-alter table cidades add constraint fk_cidades_estados foreign key (idestado) references estados(id);
+alter table cidades add constraint fk_cidades_estados foreign key (idestado) references estados(CodigoUf);
+alter table pessoa_telefone add constraint fk_pessoa_telefone foreign key (idpessoa) references pessoa(id);
+alter table pessoa_email add constraint fk_pessoa_email foreign key (idpessoa) references pessoa(id);
 
 
 insert into pessoa(id,nome) values(-10,'Administrador');

@@ -31,9 +31,9 @@ def explorerdynamic(obj, db):
     con = connection.new_connection("adonais1_tickets_0")
     con1 = connection.new_connection(db)
     filters = obj.get("filters")
-    paging = obj.get("paging")
+    paging = obj.get("pagging")
     order = obj.get("orders")
-    route = obj.get("router")
+    route = obj.get("route")
 
     try:
         cursor = con.cursor()
@@ -44,7 +44,8 @@ def explorerdynamic(obj, db):
         cursor.close()
 
         try:
-            sql = sql + ' ' + filters + ' ' + order
+            pagina = int(paging) * 20
+            sql = sql + ' ' + filters + ' ORDER BY ' + order + f' LIMIT {pagina},20'
             result = methods.getAll(sql, con1)
 
             sql = "SELECT COUNT(id) as count from " + tablebase + " " + filters

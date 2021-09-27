@@ -7,6 +7,8 @@ class PessoaEndereco():
             self.endereco = obj.get("endereco")
             self.idpessoa = obj.get("idpessoa")
             self.idcidade = obj.get("idcidade")
+            self.cidade = obj.get("cidade")
+            self.uf = obj.get("uf")
             self.complemento = obj.get("complemento")
             self.id = obj.get("id")
             self.bairro = obj.get("bairro")
@@ -24,5 +26,7 @@ class PessoaEndereco():
             self.bairro = ''
             self.cep = ''
             self.numero = ''
+            self.cidade = ''
+            self.uf = ''
     def toJson(self):
         return self.__dict__

@@ -14,8 +14,5 @@ from pessoa_clientes
 ','pessoa_clientes')
 --expl cidade
 
-insert into dynamic(route, query,tablebase) values('expl_cidades','select cidades.id, cidades.nome , uf
-from cidades
-	inner join estados on idestado = estados.id
-','cidades')
+insert into dynamic(route, query,tablebase) values('expl_cidades','select * from vw_cidades','vw_cidades')
 
