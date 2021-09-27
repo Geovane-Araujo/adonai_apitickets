@@ -18,4 +18,8 @@ class PessoaTelefone():
             self.tipo = ''
     def toJson(self):
         return self.__dict__
-
+    def toArray(self,obj):
+        arra = []
+        for fl in obj:
+            arra.append(PessoaTelefone(fl))
+        return arra

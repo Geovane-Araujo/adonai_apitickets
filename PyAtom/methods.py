@@ -61,8 +61,9 @@ def executeStatement(obj,table_basse, tp,con, id):
     if(tp == 1):
         sql = 'insert into ' + table_basse + '('
         for kv in obj:
-            if(kv == 'id' or kv == 'add' or kv == 'edit' or kv == 'dele'):
-                ''
+            tipo = type(obj[kv])
+            if(kv == 'id' or kv == 'add' or kv == 'edit' or kv == 'dele' or tipo is dict or tipo is list):
+                ree = ''
             else:
                 atr = atr +  kv + ','
                 satr += '%s ,'

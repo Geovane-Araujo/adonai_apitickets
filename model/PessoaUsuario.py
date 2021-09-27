@@ -13,7 +13,7 @@ class PessoaUsuario():
             self.idpessoa = obj.get("idpessoa")
             self.login = obj.get("login")
             self.id = obj.get("id")
-            self.pessoa = obj.get("pessoa")
+            self.pessoa = Pessoa(obj.get("pessoa"))
         else:
             self.add = True
             self.edit = False

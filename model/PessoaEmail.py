@@ -18,3 +18,10 @@ class PessoaEmail():
             self.email = ''
     def toJson(self):
         return self.__dict__
+
+    def toArray(self,obj):
+        arra = []
+        for fl in obj:
+            arra.append(PessoaEmail(fl))
+        return arra
+

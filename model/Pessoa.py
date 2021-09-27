@@ -1,4 +1,5 @@
 import json
+from array import array
 
 from model.PessoaEmail import PessoaEmail
 from model.PessoaEndereco import PessoaEndereco
@@ -17,9 +18,10 @@ class Pessoa():
             self.rgie = obj.get("rgie")
             self.id = obj.get("id")
             self.datanascimento = obj.get("datanascimento")
-            self.email = obj.get("email")
-            self.telefone = obj.get("telefone")
-            self.endereco = obj.get("endereco")
+
+            self.email = PessoaEmail.toArray(None,obj.get("email"))
+            self.telefone = PessoaTelefone.toArray(None,obj.get("telefone"))
+            self.endereco = PessoaEndereco(obj.get("endereco"))
         else:
             self.add = True
             self.edit = False

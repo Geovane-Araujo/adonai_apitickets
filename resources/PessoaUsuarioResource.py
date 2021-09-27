@@ -15,11 +15,12 @@ def save():
     controller = PessoaUsuarioController()
     try:
         con = connection.new_connection("adonais1_tickets_0")
+        obj = PessoaUsuario(obj)
         obj = controller.save(obj,con)
         ret = {
             "ret": "success",
-            "motivo": "Dados de Login estão incorretos",
-            "obj": json.dumps(obj.__dict__)
+            "motivo": "OK",
+            "obj": obj.toJson()
         }
     except mysql.connector.Error as er:
         ret = {
@@ -43,7 +44,7 @@ def getById():
 
         ret = {
             "ret": "success",
-            "motivo": "Dados de Login estão incorretos",
+            "motivo": "OK",
             "obj": obj.toJson()
         }
     except mysql.connector.Error as er:
