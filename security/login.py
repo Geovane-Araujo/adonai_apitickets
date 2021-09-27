@@ -1,7 +1,7 @@
 import json
 import mysql.connector
 from flask import Blueprint, request
-from functions import security
+from utils import security
 
 from PyAtom import methods
 from connections import connection

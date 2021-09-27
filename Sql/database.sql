@@ -7,6 +7,7 @@ create table if not exists pessoa(
 	foto LONGTEXT,
     cnpjcpf varchar(14),
     rgie varchar(15),
+    datanascimento date,
 	constraint id_pessoa primary key (id)
 );
 
@@ -71,6 +72,25 @@ create table if not exists pessoa_endereco(
 	idcidade int,
 	idpessoa int
 );
+
+create table if not exists pessoa_telefone(
+
+	id int AUTO_INCREMENT primary key,
+	idpessoa int,
+	fone varchar(14),
+    tipo int
+);
+
+create table if not exists pessoa_email(
+
+	id int AUTO_INCREMENT primary key,
+	idpessoa int,
+	email varchar(14),
+    tipo int
+);
+
+alter table pessoa_telefone add constraint fk_pessoa_telefone foreign key (idpessoa) references pessoa(id);
+alter table pessoa_email add constraint fk_pessoa_email foreign key (idpessoa) references pessoa(id);
 
 create table if not exists cidades(
 

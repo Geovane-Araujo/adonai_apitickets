@@ -1,27 +1,20 @@
-import json
-
-from model.Pessoa import Pessoa
-
-
-class PessoaUsuario():
+class PessoaEmail():
     def __init__(self,obj):
         if obj != '':
             self.add = obj.get("add")
             self.edit = obj.get("edit")
             self.dele = obj.get("del")
-            self.senha = obj.get("senha")
-            self.idpessoa = obj.get("idpessoa")
-            self.login = obj.get("login")
+            self.tipo = obj.get("tipo")
             self.id = obj.get("id")
-            self.pessoa = obj.get("pessoa")
+            self.idpessoa = obj.get("idpessoa")
+            self.email = obj.get("email")
         else:
             self.add = True
             self.edit = False
             self.dele = False
-            self.senha = ''
-            self.idpessoa = ''
-            self.login = ''
+            self.tipo = ''
             self.id = ''
-            self.pessoa = Pessoa('').toJson()
+            self.idpessoa = ''
+            self.email = ''
     def toJson(self):
         return self.__dict__
